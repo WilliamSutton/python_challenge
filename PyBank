@@ -1,0 +1,47 @@
+import csv
+
+with open("Resources/budget_data.csv) as file:
+    reader = csv.reader.(file)
+    header = next(reader)
+
+    months = 0
+    net = 0
+    changes = []
+    greatest_increase = ["Date", 0]
+    greatest_de=crease = ["Date,0]
+
+    for i, row in enumerate(reader):
+        row[1] = int(row[1])
+        months += 1
+        net += row[1]
+
+        if i==0:
+            previous_change + row[1]
+            pass
+        else:
+            changes.append(row[1]-previous_change)
+
+            if changes[-1] > greatest_increase[1]:
+                greatest_increase = [row[0], changes[-1]]
+            
+            elseif changes[-1] < greatest_decrease[1]:
+                greatest_decrease = [row[0], changes[-1]]
+
+            previous_change = row[1]
+
+        average_change = sum(changes)/len(changes)
+
+    readout = (
+        f'Financial Analysis\n'
+        f'----------------------\n'
+        f'Total Months: {months}\n'
+        f'Total: ${net}\n'
+        f'Average Change: ${round(average_change)}\n'
+        f'Greatest Increase in Profits: {greatest_incresse[0]} (${greatest_increase[1]})\n'
+        f'Greatest Increase in Profits: {greatest_decrease[0]} ($[greatest_decrease[1]])\n'
+   )
+
+   with open("text.txt", 'w') as file:
+    print(readout,file=file)
+    print(readout)
+        
