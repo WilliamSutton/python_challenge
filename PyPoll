@@ -1,0 +1,34 @@
+import csv
+
+with open('Resources/election_data.csv') as file:
+    reader = csv.reader(file)
+    header = next (reader)
+
+    candidates = {}
+
+    for row in reader:
+
+        if row[2] not in candidates:
+            candidates[row[2]] =1
+
+        else:
+            candidates[row[2]] +=1
+
+    total_votes = sum(candidates.values())
+
+readout = [
+    f'Election Results',
+    '--------------------',
+    f'Total Votes: {total_votes}',
+    '----------------------'
+]
+readout += [f'{key}: {round(value/total_votes*100,3)}% ({value})' for key,value in candidates.items()]
+readout += [
+     f'Winner: {max(candidates,key=candidates.get)}',
+    '---------------------'
+    ]
+
+with open('text.txt', 'w') as file:
+    [print(row,file=file) for row in readout]
+
+[print(row) for row in readout]
